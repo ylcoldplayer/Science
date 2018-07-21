@@ -13,7 +13,7 @@ public class IterationProcedure {
     private Double tol;
     private List<Double> initStateDist;
     private String fileName;
-    private final static Integer maxIter = 10;
+    private final static Integer maxIter = 1000000;
     private final static String SPACE = " ";
     private final static String ALPHA = "alppha";
     private final static String TOLERANCE = "tolerance";
