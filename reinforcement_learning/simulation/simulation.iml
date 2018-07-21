@@ -7,5 +7,38 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES />
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../../../guava/android/guava-testlib/src" />
+          <root url="file://$MODULE_DIR$/../../../guava/android/guava-testlib/test" />
+          <root url="file://$MODULE_DIR$/../../../guava/android/guava-tests/benchmark" />
+          <root url="file://$MODULE_DIR$/../../../guava/android/guava-tests/test" />
+          <root url="file://$MODULE_DIR$/../../../guava/android/guava/src" />
+          <root url="file://$MODULE_DIR$/../../../guava/guava-gwt/src" />
+          <root url="file://$MODULE_DIR$/../../../guava/guava-gwt/src-super/com/google/common/base/super" />
+          <root url="file://$MODULE_DIR$/../../../guava/guava-gwt/src-super/com/google/common/cache/super" />
+          <root url="file://$MODULE_DIR$/../../../guava/guava-gwt/src-super/com/google/common/collect/super" />
+          <root url="file://$MODULE_DIR$/../../../guava/guava-gwt/src-super/com/google/common/escape/super" />
+          <root url="file://$MODULE_DIR$/../../../guava/guava-gwt/src-super/com/google/common/util/concurrent/super" />
+          <root url="file://$MODULE_DIR$/../../../guava/guava-gwt/src-super/java/lang/super" />
+          <root url="file://$MODULE_DIR$/../../../guava/guava-gwt/src-super/java/util/super" />
+          <root url="file://$MODULE_DIR$/../../../guava/guava-gwt/test" />
+          <root url="file://$MODULE_DIR$/../../../guava/guava-gwt/test-super/com/google/common/collect/testing/super" />
+          <root url="file://$MODULE_DIR$/../../../guava/guava-gwt/test-super/com/google/common/math/super" />
+          <root url="file://$MODULE_DIR$/../../../guava/guava-gwt/test-super/com/google/common/primitives/super" />
+          <root url="file://$MODULE_DIR$/../../../guava/guava-gwt/test-super/com/google/common/testing/super" />
+          <root url="file://$MODULE_DIR$/../../../guava/guava-gwt/test-super/com/google/common/util/concurrent/super" />
+          <root url="file://$MODULE_DIR$/../../../guava/guava-testlib/src" />
+          <root url="file://$MODULE_DIR$/../../../guava/guava-testlib/test" />
+          <root url="file://$MODULE_DIR$/../../../guava/guava-tests/benchmark" />
+          <root url="file://$MODULE_DIR$/../../../guava/guava-tests/test" />
+          <root url="file://$MODULE_DIR$/../../../guava/guava/src" />
+          <root url="file://$MODULE_DIR$/../../../guava/refactorings" />
+        </SOURCES>
+      </library>
+    </orderEntry>
   </component>
 </module>

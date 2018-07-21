@@ -1,10 +1,14 @@
 package com.java.simulation;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.java.simulation.Constants.*;
 
 public class IterationProcedure {
     private List<Double> initialState;
@@ -13,19 +17,7 @@ public class IterationProcedure {
     private Double tol;
     private List<Double> initStateDist;
     private String fileName;
-    private final static Integer maxIter = 1000000;
-    private final static String SPACE = " ";
-    private final static String ALPHA = "alppha";
-    private final static String TOLERANCE = "tolerance";
-    private final static String MAX_ITERATION = "max_iteration";
-    private final static String INIT_STATE = "init_state";
-    private final static String INIT_STATE_DIST = "init_state_dist";
-    private final static String ITER_COUNT = "iter_count";
-    private final static String CURRENT_STATE_X = "current_state_x";
-    private final static String CURRENT_STATE_Y = "current_state_y";
-    private final static String STATE_TO_UPDATE = "state_to_update";
-    private final static String GREEDY_X = "greedy_x";
-    private final static String GREEDY_Y = "greedy_y";
+    private final static Integer maxIter = 1000000000;
 
     public IterationProcedure(List<Double> initialState, List<Double> finalState,
                               Double alpha, Double tol, List<Double> initStateDist, String fileName) {
@@ -41,19 +33,21 @@ public class IterationProcedure {
     public boolean iterate() {
         List<Double> currentState = initialState;
         List<Double> nextState = initialState;
-        int iterCount = 0;
+        int iterCount = 10000000;
         List<Double> optimalValue = new ArrayList<Double>(2);
         optimalValue.add(0.0);
         optimalValue.add(0.0);
 
         try {
+            File file = new File(fileName);
+            boolean existed = Files.deleteIfExists(file.toPath());
             PrintWriter out = new PrintWriter(new FileWriter(fileName, true));
             String generalStatsInfo = ALPHA + SPACE + TOLERANCE + SPACE + MAX_ITERATION
                     + SPACE + INIT_STATE + SPACE + INIT_STATE_DIST;
             String generalStats = Double.toString(alpha) + SPACE + Double.toString(tol) + SPACE
                     + Integer.toString(maxIter) + SPACE + initialState.toString() + SPACE + initStateDist.toString();
-            out.println(generalStatsInfo);
-            out.println(generalStats);
+            //out.println(generalStatsInfo);
+            //out.println(generalStats);
 
             String statsInfo = ITER_COUNT + SPACE + CURRENT_STATE_X + SPACE + CURRENT_STATE_Y + SPACE + STATE_TO_UPDATE
                     + SPACE + GREEDY_X + SPACE + GREEDY_Y;
@@ -72,10 +66,12 @@ public class IterationProcedure {
                 Integer stateToUpdate = stateUpdater.getStateToUpdate();
 
                 // Log state update info
-                String stat = Integer.toString(iterCount) + SPACE + Double.toString(currentState.get(0)) + SPACE
-                        + Double.toString(currentState.get(1)) + SPACE + Integer.toString(stateToUpdate) + SPACE
-                        + Double.toString(jGreedy.get(0)) + SPACE + Double.toString(jGreedy.get(1));
-                out.println(stat);
+                if(iterCount % 10000 == 0) {
+                    String stat = Integer.toString(iterCount) + SPACE + Double.toString(currentState.get(0)) + SPACE
+                            + Double.toString(currentState.get(1)) + SPACE + Integer.toString(stateToUpdate) + SPACE
+                            + Double.toString(jGreedy.get(0)) + SPACE + Double.toString(jGreedy.get(1));
+                    out.println(stat);
+                }
 
                 // Update the value function
                 stateUpdater.update();
