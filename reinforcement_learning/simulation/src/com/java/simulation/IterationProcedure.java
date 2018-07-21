@@ -1,6 +1,5 @@
 package com.java.simulation;
 
-import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,6 +20,12 @@ public class IterationProcedure {
     private final static String MAX_ITERATION = "max_iteration";
     private final static String INIT_STATE = "init_state";
     private final static String INIT_STATE_DIST = "init_state_dist";
+    private final static String ITER_COUNT = "iter_count";
+    private final static String CURRENT_STATE_X = "current_state_x";
+    private final static String CURRENT_STATE_Y = "current_state_y";
+    private final static String STATE_TO_UPDATE = "state_to_update";
+    private final static String GREEDY_X = "greedy_x";
+    private final static String GREEDY_Y = "greedy_y";
 
     public IterationProcedure(List<Double> initialState, List<Double> finalState,
                               Double alpha, Double tol, List<Double> initStateDist, String fileName) {
@@ -50,6 +55,10 @@ public class IterationProcedure {
             out.println(generalStatsInfo);
             out.println(generalStats);
 
+            String statsInfo = ITER_COUNT + SPACE + CURRENT_STATE_X + SPACE + CURRENT_STATE_Y + SPACE + STATE_TO_UPDATE
+                    + SPACE + GREEDY_X + SPACE + GREEDY_Y;
+            out.println(statsInfo);
+
             do {
                 iterCount += 1;
                 Double stepSize = 1.0/(double)iterCount;
@@ -58,18 +67,22 @@ public class IterationProcedure {
                 // Decide the greedy policy for current state
                 List<Double> jGreedy = optimalDecider.getOptimalLocalPolicyFunction();
 
-                // Update the value function
                 StateUpdater stateUpdater =
                         new StateUpdater(currentState, nextState, jGreedy, stepSize, initStateDist);
+                Integer stateToUpdate = stateUpdater.getStateToUpdate();
+
+                // Log state update info
+                String stat = Integer.toString(iterCount) + SPACE + Double.toString(currentState.get(0)) + SPACE
+                        + Double.toString(currentState.get(1)) + SPACE + Integer.toString(stateToUpdate) + SPACE
+                        + Double.toString(jGreedy.get(0)) + SPACE + Double.toString(jGreedy.get(1));
+                out.println(stat);
+
+                // Update the value function
                 stateUpdater.update();
 
                 currentState = stateUpdater.getCurrentState();
                 nextState = stateUpdater.getNextState();
                 finalState = nextState;
-
-                String stat = Integer.toString(iterCount) + SPACE + Double.toString(currentState.get(0)) + SPACE
-                        + Double.toString(currentState.get(1));
-                out.println(stat);
 
                 if(maxNorm(currentState, optimalValue) <= tol) return true;
 
