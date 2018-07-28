@@ -33,7 +33,7 @@ public class IterationProcedure {
     public boolean iterate() {
         List<Double> currentState = initialState;
         List<Double> nextState = initialState;
-        int iterCount = 10000000;
+        int iterCount = 1;
         List<Double> optimalValue = new ArrayList<Double>(2);
         optimalValue.add(0.0);
         optimalValue.add(0.0);

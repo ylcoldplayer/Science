@@ -8,7 +8,7 @@ public class PolicyIteration {
         List<List<Double>> initialStates = new ArrayList<List<Double>>(10);
 
         List<Double> l1 = new ArrayList<Double>(2);
-        l1.add(1.8);
+        l1.add(5.0);
         l1.add(1.8 - 4.0/3.0 - 0.0001);
         initialStates.add(l1);
 
@@ -23,8 +23,8 @@ public class PolicyIteration {
         Double tol = 0.0001;
 
         List<Double> initStateDist = new ArrayList<Double>();
-        initStateDist.add(0.1);
-        initStateDist.add(0.9);
+        initStateDist.add(0.15);
+        initStateDist.add(0.85);
 
         for (Integer i = 0; i < initialStates.size(); ++i) {
             String fileName = "states_record_" + Integer.toString(i) + ".txt";
