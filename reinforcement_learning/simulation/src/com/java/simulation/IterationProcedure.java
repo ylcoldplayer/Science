@@ -55,7 +55,8 @@ public class IterationProcedure {
 
             do {
                 iterCount += 1;
-                Double stepSize = 1.0/(double)iterCount;
+                //Double stepSize = 1.0/(double)iterCount;
+                Double stepSize = 0.00001;
                 OptimalDecider optimalDecider = new OptimalDecider(currentState, alpha);
 
                 // Decide the greedy policy for current state

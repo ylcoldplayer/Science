@@ -23,8 +23,8 @@ public class PolicyIteration {
         Double tol = 0.0001;
 
         List<Double> initStateDist = new ArrayList<Double>();
-        initStateDist.add(0.15);
-        initStateDist.add(0.85);
+        initStateDist.add(0.01);
+        initStateDist.add(0.99);
 
         for (Integer i = 0; i < initialStates.size(); ++i) {
             String fileName = "states_record_" + Integer.toString(i) + ".txt";
